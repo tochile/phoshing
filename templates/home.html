@@ -1,0 +1,39 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+   <div class="container">
+        <h1 class="text-center text-white mt-5 pt-5">PHISHING WEBSITE DETECTION</h1>
+    </div><br><br><br>
+    <div class="row" style="width: 2000px;">
+        <div class="col-md-4">
+            <img src="{{url_for('static',filename='../static/images/images.jpeg')}}">
+        </div>
+    
+    <div class="col-md-4" style="margin-left:110px;">
+        <form class="form-group text-center" action="{{url_for('predict')}}" method="POST">
+           <label>ENTER THE WEBSITE URL HERE</label><br>
+           <input type="text-center" class="form-control" style="width:600px;" name="comments">
+            <br> 
+            <input type="submit"  value="Check" class="btn btn-danger">
+        </form><br><br>
+       
+
+    </div> 
+    </div>
+    <div>
+    </div>
+         <h1 class="text-center text-white mt-5 pt-5">Result </h1>
+    <div class="result btn-danger text-center" style="height: 30px;">
+        {% if prediction == 0%}
+        <h2> The website is a legitimate one</h2>
+        {% elif prediction == 1%}
+        <h2> The website is a phishing one</h2>
+        {% endif %}
+        
+    </div>  
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+{% endblock %}
